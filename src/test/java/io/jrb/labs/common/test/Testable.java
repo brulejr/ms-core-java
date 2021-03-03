@@ -21,31 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.jrb.labs.common.resource;
+package io.jrb.labs.common.test;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.apache.commons.lang3.RandomStringUtils;
 
-public class ErrorResponseEntity extends ResponseEntity<ErrorResponse> {
+import java.util.function.Consumer;
 
-    public static ErrorResponseEntity badRequest(final String message) {
-        return new ErrorResponseEntity(ErrorResponse.build(HttpStatus.BAD_REQUEST, message));
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
+public interface Testable {
+
+    default String randomString(final int minlen, final int maxlen) {
+        return RandomStringUtils.randomAlphanumeric(minlen, maxlen);
     }
 
-    public static ErrorResponseEntity conflict(final String message) {
-        return new ErrorResponseEntity(ErrorResponse.build(HttpStatus.CONFLICT, message));
+    default <T> void givenNotNull(final T value, final Consumer<T> consumer) {
+        assertThat(value, is(notNullValue()));
+        consumer.accept(value);
     }
-
-    public static ErrorResponseEntity notFound(final String message) {
-        return new ErrorResponseEntity(ErrorResponse.build(HttpStatus.NOT_FOUND, message));
-    }
-
-    public static ErrorResponseEntity serverError(final String message) {
-        return new ErrorResponseEntity(ErrorResponse.build(HttpStatus.INTERNAL_SERVER_ERROR, message));
-    }
-
-    public ErrorResponseEntity(final ErrorResponse body) {
-        super(body, body.getStatus());
-    }
-
 }
