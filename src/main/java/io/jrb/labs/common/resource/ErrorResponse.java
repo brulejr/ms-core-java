@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
+import lombok.Singular;
 import lombok.Value;
 import org.springframework.http.HttpStatus;
 
@@ -51,6 +52,7 @@ public class ErrorResponse {
     @Builder.Default
     Instant timestamp = Instant.now();
 
+    @Singular
     List<String> bindingErrors;
 
     public static ErrorResponse build(final HttpStatus status, final String message) {
