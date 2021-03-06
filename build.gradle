@@ -19,17 +19,21 @@ configurations {
 }
 
 dependencies {
-	implementation 'com.github.java-json-tools:json-patch:1.12'
-	implementation 'io.projectreactor:reactor-core:3.4.3'
-	implementation 'org.apache.commons:commons-lang3'
-	implementation 'org.apache.commons:commons-text:1.9'
-	implementation 'org.springframework.data:spring-data-jpa:2.4.5'
-	implementation 'org.springframework:spring-webflux:5.3.4'
-	compileOnly 'org.projectlombok:lombok:1.18.18'
-	annotationProcessor 'org.projectlombok:lombok:1.18.18'
-	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
-	testImplementation 'org.hamcrest:hamcrest-library:2.2'
-	testImplementation 'io.projectreactor:reactor-test:3.4.3'
+	implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootDependenciesVersion}")
+
+	implementation "com.github.java-json-tools:json-patch:${jsonPatchVersion}"
+	implementation "io.projectreactor:reactor-core"
+	implementation "org.apache.commons:commons-lang3"
+	implementation "org.apache.commons:commons-text:${commonsTextVersion}"
+	implementation "org.springframework.data:spring-data-jpa"
+	implementation "org.springframework:spring-webflux"
+
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	testImplementation "org.junit.jupiter:junit-jupiter-engine"
+	testImplementation "org.hamcrest:hamcrest-library"
+	testImplementation "io.projectreactor:reactor-test"
 }
 
 test {
