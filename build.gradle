@@ -22,12 +22,13 @@ dependencies {
 	implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootDependenciesVersion}")
 
 	implementation "com.github.java-json-tools:json-patch:${jsonPatchVersion}"
+	implementation "com.h2database:h2"
 	implementation "io.projectreactor:reactor-core"
 	implementation "org.apache.commons:commons-lang3"
 	implementation "org.apache.commons:commons-text:${commonsTextVersion}"
 	implementation "org.springframework.data:spring-data-jpa"
 	implementation "org.springframework:spring-webflux"
-
+	
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
